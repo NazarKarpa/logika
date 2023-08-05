@@ -1,7 +1,14 @@
 
 class Widhet:
-    def __init__(self,text):
+    def __init__(self,text,x,y,):
         self.text = text
+        self.x = x
+        self.y = y
+
+    def druk(self):
+        e = ("брати участь?")
+        a = (x,y)
+
 
 
 
@@ -15,7 +22,7 @@ b = Widhet("ви уже записаний")
 x = 100
 Button.x = 100
 Button.y = 100
-print("Хочете брати участь?")
+
 print("Розташовання",Button.x,"на",Button.y)
 a = input("Так-Не")
 
