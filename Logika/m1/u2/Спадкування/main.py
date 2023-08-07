@@ -4,10 +4,11 @@ class Widhet:
         self.text = text
         self.x = x
         self.y = y
-        text = "Пон"
 
-    def druk(self):
-        print("Напис",text)
+
+    def druk(self,metod):
+        metod = "123"
+        print("Напис",metod)
         print('Розташування',x,y)
 
 
