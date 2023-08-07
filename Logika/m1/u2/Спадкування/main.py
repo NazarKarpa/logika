@@ -30,7 +30,7 @@ class Button(Widhet):
 
 
 adab = Button("Хочеш приняти участь?",100,100)
-
+adab.druk()
 a = input("Хочете зареєструватися? Так-Не")
 
 if a == "Так":
