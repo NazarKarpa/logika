@@ -15,18 +15,13 @@ class Widhet:
 
 
 class Button(Widhet):
-    def __init__(self,text,x,y):
-        self.text = text
-        self.y = y
-        self.x =
+    def __init__(self,text,x,y,is_clicked):
         super().__init__(text,x,y)
+        self.is_clicked = is_clicked
+        is_clicked = False
 
-    def click(self,):
-        dear.druk2()
-        click = True
 
-    def folse(self):
-        dar.druk3()
+
 
 
 
