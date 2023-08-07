@@ -21,6 +21,7 @@ class Button(Widhet):
         self.is_clicked = False
     def click(self):
         self.is_clicked = True
+        print("Ви записані")
 
 
 
