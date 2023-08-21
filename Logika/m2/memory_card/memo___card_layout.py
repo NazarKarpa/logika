@@ -42,7 +42,7 @@ layuot_ans2.addWidget(Butoonr2)
 layuot_ans3.addWidget(Butoonr3)
 layuot_ans3.addWidget(Butoonr4)
 
-layuot_ans1.addLayout(layuot_ans3)
+layuot_ans1.addLayout(layuot_ans2)
 layuot_ans1.addLayout(layuot_ans3)
 RadioGroupBox.setLayout(layuot_ans1)
 
