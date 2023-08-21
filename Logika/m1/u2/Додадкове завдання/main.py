@@ -11,6 +11,7 @@ button4 = QRadioButton("TheBrianMaps")
 button5 = QRadioButton("Mister Max")
 button6 = QRadioButton("EeOneGuy")
 
+
 line = QVBoxLayout()
 
 
@@ -38,6 +39,7 @@ line.addLayout(hline3)
 def win():
     victory = QMessageBox()
     victory.setText("Ви виграли 2 копійки")
+
     victory.exec_()
 def lose():
     victory = QMessageBox()
