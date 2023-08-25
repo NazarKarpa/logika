@@ -10,7 +10,7 @@ app = QApplication([])
 button = QPushButton("Відповісти")
 buttonslip = QPushButton("Відпочити")
 buttonmenu = QPushButton("Меню")
-
+special = QPushButton("Підзказка")
 
 lb_quastion = QLabel("")
 box_min = QSpinBox()
@@ -32,9 +32,10 @@ RadioGroup.addButton(Butoonr4)
 layuot_ans1 = QHBoxLayout()
 layuot_ans2 = QVBoxLayout()
 layuot_ans3 = QVBoxLayout()
+layuot_ans4 = QVBoxLayout()
 
 
-
+layuot_ans4.addWidget(special)
 layuot_ans2.addWidget(Butoonr1)
 layuot_ans2.addWidget(Butoonr2)
 
@@ -42,6 +43,7 @@ layuot_ans2.addWidget(Butoonr2)
 layuot_ans3.addWidget(Butoonr3)
 layuot_ans3.addWidget(Butoonr4)
 
+layuot_ans2.addLayout(layuot_ans4)
 layuot_ans1.addLayout(layuot_ans2)
 layuot_ans1.addLayout(layuot_ans3)
 RadioGroupBox.setLayout(layuot_ans1)
@@ -63,12 +65,16 @@ layuot_line1 = QHBoxLayout()
 layuot_line2 = QHBoxLayout()
 layuot_line3 = QHBoxLayout()
 layuot_line4 = QHBoxLayout()
-
+layuot_line4.addWidget(special)
 layuot_line1.addWidget(buttonmenu)
 layuot_line1.addStretch(1)
 layuot_line1.addWidget(buttonslip)
 layuot_line1.addWidget(box_min)
 layuot_line1.addWidget(QLabel("Хвилин"))
+
+
+
+
 
 layuot_line2.addWidget(lb_quastion, alignment=(Qt.AlignHCenter | Qt.AlignVCenter))
 
@@ -82,6 +88,8 @@ layuot_card.addLayout(layuot_line1)
 layuot_card.addLayout(layuot_line2)
 layuot_card.addLayout(layuot_line3)
 layuot_card.addLayout(layuot_line4)
+
+
 
 
 
