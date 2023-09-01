@@ -5,12 +5,14 @@ from PyQt5.QtWidgets import (
         QLineEdit, QFormLayout,
         QHBoxLayout, QVBoxLayout,
         QGroupBox, QButtonGroup, QRadioButton,
-        QPushButton, QLabel, QSpinBox)
+        QPushButton, QLabel, QSpinBox, QMessageBox)
 app = QApplication([])
 button = QPushButton("Відповісти")
 buttonslip = QPushButton("Відпочити")
 buttonmenu = QPushButton("Меню")
 special = QPushButton("Підзказка")
+special2 = QPushButton("Підзказка(для особливих)")
+
 
 lb_quastion = QLabel("")
 box_min = QSpinBox()
@@ -35,6 +37,7 @@ layuot_ans3 = QVBoxLayout()
 layuot_ans4 = QVBoxLayout()
 
 
+layuot_ans4.addWidget(special2)
 layuot_ans4.addWidget(special)
 layuot_ans2.addWidget(Butoonr1)
 layuot_ans2.addWidget(Butoonr2)
@@ -65,12 +68,17 @@ layuot_line1 = QHBoxLayout()
 layuot_line2 = QHBoxLayout()
 layuot_line3 = QHBoxLayout()
 layuot_line4 = QHBoxLayout()
+
+
+
 layuot_line4.addWidget(special)
+
 layuot_line1.addWidget(buttonmenu)
 layuot_line1.addStretch(1)
 layuot_line1.addWidget(buttonslip)
 layuot_line1.addWidget(box_min)
 layuot_line1.addWidget(QLabel("Хвилин"))
+
 
 
 
@@ -88,6 +96,8 @@ layuot_card.addLayout(layuot_line1)
 layuot_card.addLayout(layuot_line2)
 layuot_card.addLayout(layuot_line3)
 layuot_card.addLayout(layuot_line4)
+layuot_line4.addWidget(special2)
+
 
 
 
@@ -117,8 +127,16 @@ def show_result():
     RadioGroupBox.hide()
     AnsGroupBox.show()
     button.setText("Наступне питання")
-
-
+def win():
+    victory = QMessageBox()
+    victory.setText("Одна з тих відповідей правельна")
+    victory.exec_()
+special.clicked.connect(win)
+def won():
+    victory = QMessageBox()
+    victory.setText("В цьому проекті нема справедливості,пам'ятай це")
+    victory.exec_()
+special2.clicked.connect(won)
 def show_question():
     RadioGroupBox.show()
     AnsGroupBox.hide()
