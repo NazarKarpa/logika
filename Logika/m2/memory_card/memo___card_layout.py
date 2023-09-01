@@ -114,9 +114,22 @@ layuot_card.addLayout(layuot_line4)
 
 # Результат роботи цього модуля: віджети поміщені всередину layout_card, який можна призначити вікну.
 def show_result():
-    ''' показати панель відповідей '''
-    pass
+    RadioGroup.hide()
+    AnsGroupBox.show()
+    button.setText("Відповісти")
+
 
 def show_question():
-    ''' показати панель запитань '''
-    pass
+    RadioGroup.show()
+    AnsGroupBox.hide()
+    button.setText("Відповісти")
+    RadioGroup.setExclusive(False)
+    Butoonr1.setChecked(False)
+    Butoonr2.setChecked(False)
+    Butoonr3.setChecked(False)
+    Butoonr4.setChecked(False)
+
+    RadioGroup.setExclusive(True)
+
+
+
