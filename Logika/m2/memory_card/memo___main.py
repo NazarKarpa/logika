@@ -23,17 +23,35 @@ timer = QTimer()
 win_main = QWidget()
 win_card = QWidget()
 
+win_main.setStyleSheet('''
+                        background-color: black;
+                        color: white;
+                        border: 1px solid green
+                        ''')
+win_card.setStyleSheet('''
+                        background-color: black;
+                        color: white;
+                        border: 1px solid yellow;
+                        font-size: 20px;
+                        ''')
+btn_delete.setStyleSheet('''
+                         background-color: red;   
+                         ''')
+btn_add.setStyleSheet('''
+                         background-color: green;   
+                         ''')
 
+Lb_result.setStyleSheet("margin: 35px")
 # Тестові данні
 def testlist():
 
-    frm = Question('Яблуко', 'apple', 'application', 'pinapple', 'apply')
+    frm = Question('Бетон важить 10 кг,скільки коштують кілограм апельсинів', '100 грам грошей', 'незнаю', 'знаю', '1 бетон')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Дім', 'house', 'horse', 'hurry', 'hour')
+    frm = Question('Була 1 курка в тебе,2 курки привезли сусіду,скільке в тебе курей?', '1', '3', 'Сусід', '5')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Мишка', 'mouse', 'mouth', 'muse', 'museum')
+    frm = Question('Який матеріал використовується для виробництва найбільшої кількості одягу?', 'Бавовна', 'Шовк', 'Вовна', 'Поліестер')
     questions_listmodel.form_list.append(frm)
-    frm = Question('Число', 'number', 'digit', 'amount', 'summary')
+    frm = Question('Яка найвища гора в світі?', 'Еверест', 'Кіліманджаро', 'Маккінлі', 'Аконкагуа')
     questions_listmodel.form_list.append(frm)
 
 # Функції для проведення тесту
