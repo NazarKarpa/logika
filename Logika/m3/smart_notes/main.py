@@ -49,7 +49,7 @@ row2.addWidget(btn_tags_search)
 row2.addWidget(btn_tgs_del)
 
 col2.addWidget(btn_note_save)
-col2.addWidget(lb_notes)
+
 
 col1.addWidget(field_text)
 
