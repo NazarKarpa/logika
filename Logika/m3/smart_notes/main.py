@@ -24,6 +24,7 @@ btn_note_save = QPushButton("Зберегти замітку")
 
 lb_tags = QLabel("Список тегів")
 
+
 lst_tags = QListWidget()
 
 field_tag = QLineEdit()
@@ -99,8 +100,56 @@ def save_note():
 
         notes[key]["текст"] = field_text.toPlainText()
         writeToFile()
+def add_noteses():
+    key = lst_notes.currentItem().text()
+    tag = field_tag.text()
+    notes[key]['теги'].append(tag)
 
-btn_note_save.clicked.connect(save_note)
+    lst_tags.addItem(tag)
+
+    writeToFile()
+def del_noteses():
+    key = lst_notes.currentItem().text()
+    tag = lst_tags.currentItem().text()
+
+    notes[key]['теги'].remove(tag)
+    lst_tags.clear()
+    lst_tags.addItems(notes[key]['теги'])
+
+    writeToFile()
+def search_note():
+    tag  = field_tag.text()
+
+    if "Шукати замітки за тегом" == btn_tags_search.text():
+        filtered_notes = {}
+
+        for key in notes:
+            if tag in notes[key]["теги"]:
+                filtered_notes[key] = notes[key]
+
+        btn_tags_search.setText("Скинути пошук")
+
+        lst_notes.clear()
+        lst_notes.addItems(filtered_notes)
+        lst_tags.clear()
+
+        field_text.clear()
+
+
+    elif "Скинути пошук" == btn_tags_search.text():
+        btn_tags_search.setText("Шукати за тегом")
+
+        lst_notes.clear()
+        lst_notes.addItems(notes)
+        lst_tags.clear()
+
+        field_text.clear()
+        field_tag.clear()
+
+
+btn_tags_add.clicked.connect(add_noteses)
+btn_tgs_del.clicked.connect(del_noteses)
+btn_tags_search.clicked.connect(search_note)
 
 btn_note_del.clicked.connect(del_note)
 
