@@ -2,7 +2,7 @@ import os
 
 # потрібна константа Qt.KeepAspectRatio для зміни розмірів із збереженням пропорцій
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap  # оптимізована для показу на екрані картинка
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QFileDialog, QLabel,
     QPushButton, QListWidget, QHBoxLayout, QVBoxLayout
@@ -15,7 +15,6 @@ from PyQt5.QtWidgets import (
 app = QApplication([])
 main_window = QWidget()
 
-List = QListWidget()
 
 button_folder = QPushButton("Папка")
 button_left = QPushButton("Вліво")
@@ -34,6 +33,7 @@ layoutv1 = QVBoxLayout()
 layouth2 = QHBoxLayout()
 layoutv2 = QVBoxLayout()
 
+
 layoutv1.addWidget(button_folder)
 layoutv1.addWidget(lst_files)
 layouth1.addWidget(button_left)
@@ -43,10 +43,33 @@ layouth1.addWidget(button_sharp)
 layouth1.addWidget(button_bw)
 
 layoutv2.addWidget(Photo)
-layoutv2.addLayout(layouth2)
+layoutv2.addLayout(layouth1)
 
 layouth2.addLayout(layoutv1, 1)
 layouth2.addLayout(layoutv2, 4)
+
+
+
+workdir = QFileDialog.getExistingDirectory()
+
+files_and_folders = os.listdir(workdir)
+def filter(files):
+    result = []
+    ext = ['jpg', 'jpeg', 'bmp', 'gif', 'jfif', 'svg', 'png']
+
+    for file in files:
+
+        if file.split('')[-1] in ext:
+            result.append(file)
+        return result
+
+
+
+filter(files_and_folders)
+
+
+
+
 
 main_window.setLayout(layouth2)
 
