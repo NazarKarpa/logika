@@ -150,7 +150,7 @@ def search_note():
 btn_tags_add.clicked.connect(add_noteses)
 btn_tgs_del.clicked.connect(del_noteses)
 btn_tags_search.clicked.connect(search_note)
-
+btn_note_save.clicked.connect(save_note)
 btn_note_del.clicked.connect(del_note)
 
 btn_note_create.clicked.connect(add_note)
@@ -164,7 +164,21 @@ lst_notes.addItems(notes)
 
 
 
-
+btn_note_save.setStyleSheet('''
+                         background-color: blue;   
+                         ''')
+btn_tgs_del.setStyleSheet('''
+                         background-color: red;   
+                         ''')
+btn_note_del.setStyleSheet('''
+                         background-color: red;   
+                         ''')
+btn_note_create.setStyleSheet('''
+                         background-color: lime;   
+                         ''')
+field_tag.setStyleSheet('''
+                         background-color: lime;   
+                         ''')
 
 
 window.setLayout(layout_notes)
