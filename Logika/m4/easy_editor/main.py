@@ -61,7 +61,7 @@ def filter(files):
 
         if file.split('.')[-1] in ext:
             result.append(file)
-        return result
+    return result
 
 
 
