@@ -22,6 +22,7 @@ class ImageEditor():
         bw = self.original.convert("L")
         self.edited.append(bw)
 
+
     def blur(self):
         blur = self.original.filter(ImageFilter.BoxBlur(9))
         blur.show()
