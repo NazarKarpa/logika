@@ -59,7 +59,7 @@ def filter(files):
 
     for file in files:
 
-        if file.split('')[-1] in ext:
+        if file.split('.')[-1] in ext:
             result.append(file)
         return result
 
