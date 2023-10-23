@@ -25,7 +25,16 @@ button_bw = QPushButton("Ч.Б")
 
 lst_files = QListWidget()
 
-Photo = QLabel("Картинка")
+image = "2824384.jpg"
+kat = QPixmap(image)
+
+
+Photo = QLabel(main_window)
+Photo.setPixmap(kat)
+
+
+
+
 
 
 layouth1 = QHBoxLayout()
