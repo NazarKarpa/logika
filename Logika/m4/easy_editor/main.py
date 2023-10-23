@@ -12,8 +12,11 @@ from PyQt5.QtWidgets import (
 #from PIL.ImageQt import ImageQt  # Для перенесення графіки з Pillow до QT
 #from PIL.ImageFilter import SHARPEN
 
+
+
 app = QApplication([])
 main_window = QWidget()
+
 
 
 button_folder = QPushButton("Папка")
@@ -25,12 +28,13 @@ button_bw = QPushButton("Ч.Б")
 
 lst_files = QListWidget()
 
-image = "2824384.jpg"
+image = "132.jpg"
 kat = QPixmap(image)
 
 
 Photo = QLabel(main_window)
 Photo.setPixmap(kat)
+
 
 
 
