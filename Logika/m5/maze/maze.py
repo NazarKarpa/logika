@@ -33,6 +33,11 @@ class Player(GameSprite):
 
 
 class Enemy(GameSprite):
+    def __init__(self, player_image, rect_x, rect_y, playeer_speed, min_x, ):
+        super().__init__(player_image, rect_x, rect_y, playeer_speed)
+        self.min_x = min_x
+
+        self.direction = "left"
     direction = "left"
     def update(self):
         if self.direction == "left":
@@ -40,7 +45,7 @@ class Enemy(GameSprite):
         else:
             self.rect.x += self.speed
 
-        if self.rect.x <= 500:
+        if self.rect.x <= self.min_x:
             self.direction = 'right'
         elif self.rect.x >= win_width - 80:
             self.direction = "left"
@@ -56,8 +61,9 @@ background = scale(load("background.jpg"), (win_width, win_height))
 
 
 player = Player("hero.png", 5, win_height - 80, 5)
-gyborg = Enemy("cyborg.png", win_width - 100, win_height - 300,  2)
+gyborg = Enemy("cyborg.png", win_width - 100, win_height - 300,  2, 500)
 final = GameSprite("treasure.png", win_width - 80, win_height - 80, 0)
+gyborg2 = Enemy("cyborg.png", win_width - 150, win_height - 150,  2, 350)
 
 
 game = True
@@ -84,7 +90,8 @@ while game:
         player.reset()
         gyborg.reset()
         final.reset()
-        
+        gyborg2.reset()
+        gyborg2.update()
         gyborg.update()
         player.update()
 
