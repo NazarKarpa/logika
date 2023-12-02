@@ -77,9 +77,14 @@ window = display.set_mode((win_width, win_height))
 
 background = scale(load("background.jpg"), (win_width, win_height))
 
-wall_player1 = Wall(110, 0, 300, 20)
-wall_player2 = Wall(400, 0, 20, 350)
-wall_player3 = Wall(200, 200, 20, 350)
+wall_player1 = Wall(0, 0, 2500, 20)
+wall_player2 = Wall(250, 0, 20, 350)
+wall_player3 = Wall(120, 200, 20, 350)
+wall_player4 = Wall(430, 200, 20, 350)
+wall_player5 = Wall(430, 300, 120, 20)
+wall_player6 = Wall(700, 0, 20, 2002)
+wall_player6 = Wall(700, 700, 2000, 2)
+
 player = Player("hero.png", 5, win_height - 80, 5)
 gyborg = Enemy("cyborg.png", win_width - 100, win_height - 300,  2, 500)
 final = GameSprite("treasure.png", win_width - 80, win_height - 80, 0)
@@ -115,6 +120,9 @@ while game:
         wall_player1.reset()
         wall_player2.reset()
         wall_player3.reset()
+        wall_player4.reset()
+        wall_player5.reset()
+        wall_player6.reset()
         player.reset()
         gyborg.reset()
         final.reset()
@@ -128,7 +136,7 @@ while game:
             finish = True
             window.blit(win,(200,200))
             money_sound.play()
-        if sprite.collide_rect(player, gyborg) or sprite.collide_rect(player, wall_player1) or sprite.collide_rect(player, wall_player2) or sprite.collide_rect(player, wall_player3) or sprite.collide_rect(player, gyborg2):
+        if sprite.collide_rect(player, gyborg) or sprite.collide_rect(player, wall_player1) or sprite.collide_rect(player, wall_player2) or sprite.collide_rect(player, wall_player3) or sprite.collide_rect(player, gyborg2) or sprite.collide_rect(player, wall_player5):
 
             finish = True
             window.blit(lose,(200,200))
