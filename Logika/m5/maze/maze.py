@@ -33,7 +33,7 @@ class Player(GameSprite):
 
 
 class Enemy(GameSprite):
-    def __init__(self, player_image, rect_x, rect_y, playeer_speed, min_x, ):
+    def __init__(self, player_image, rect_x, rect_y, playeer_speed, min_x):
         super().__init__(player_image, rect_x, rect_y, playeer_speed)
         self.min_x = min_x
 
@@ -83,12 +83,12 @@ wall_player3 = Wall(120, 200, 20, 350)
 wall_player4 = Wall(430, 200, 20, 350)
 wall_player5 = Wall(430, 300, 120, 20)
 wall_player6 = Wall(700, 0, 20, 2002)
-wall_player6 = Wall(700, 700, 2000, 2)
+wall_player6 = Wall(700, 700, 2000, 27)
 
 player = Player("hero.png", 5, win_height - 80, 5)
-gyborg = Enemy("cyborg.png", win_width - 100, win_height - 300,  2, 500)
+gyborg = Enemy("cyborg.png", win_width - 100, win_height - 300,  1.2, 500)
 final = GameSprite("treasure.png", win_width - 80, win_height - 80, 0)
-gyborg2 = Enemy("cyborg.png", win_width - 150, win_height - 150,  2, 450)
+gyborg2 = Enemy("cyborg.png", win_width - 150, win_height - 150,  3, 450)
 
 
 game = True
