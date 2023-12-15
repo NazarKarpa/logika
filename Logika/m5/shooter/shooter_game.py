@@ -6,6 +6,10 @@ from pygame.image import load
 from random import randint
 
 
+lost = 0
+score = 0
+
+
 class GameSprite(sprite.Sprite):
     def __init__(self, player_image, rect_x, rect_y, playeer_speed, player_widht, player_heigh):
         super().__init__()
@@ -35,6 +39,17 @@ class Player(GameSprite):
     def fire(self):
         pass
 
+class Enemy(GameSprite):
+    def update(self):
+        self.rect.y += self.speed
+        global lost
+        if self.rect.y < 0:
+            self.rect.y = 0
+            self.rect.x = randint(0, win_widht - 100)
+            lost = lost + 1
+
+
+
 win_widht = 700
 win_height = 500
 window = display.set_mode((win_widht,win_height))
@@ -42,6 +57,15 @@ background = scale(load('galaxy.jpg'), (win_widht, win_height))
 
 ship = Player('rocket.png', 5, (win_height) - 160, 3, 100, 150)
 
+monsters = sprite.Group()
+
+for i in range(4):
+    enemy = Enemy('ufo.png', randint(0, win_widht - 100), 0,randint(1,3),85,80)
+    monsters.add(enemy)
+
+for i in range(2):
+    enemy = Enemy('asteroid.png', randint(0, win_widht - 50), 0,randint(1,3),60,45)
+    monsters.add(enemy)
 
 game = True
 finish = False
@@ -53,6 +77,11 @@ mixer.music.load('space.ogg')
 mixer.music.play(-1)
 mixer.music.set_volume(0.03)
 
+font.init()
+font1 = font.SysFont('Aril', 36)
+
+
+
 while game:
     for e in event.get():
         if e.type == QUIT:
@@ -60,7 +89,14 @@ while game:
     if not finish:
 
         window.blit(background, (0 ,0))
+        txt_lose = font1.render(f'Пропушено: {lost}', True, (255, 255, 255))
+        window.blit(txt_lose, (10, 50))
         ship.reset()
+
+        monsters.draw(window)
+
+        monsters.update()
+
         ship.update()
     display.update()
     clock.tick(FPS)
