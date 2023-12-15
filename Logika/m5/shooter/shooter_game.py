@@ -43,9 +43,9 @@ class Enemy(GameSprite):
     def update(self):
         self.rect.y += self.speed
         global lost
-        if self.rect.y < 0:
+        if self.rect.y > win_height:
             self.rect.y = 0
-            self.rect.x = randint(0, win_widht - 100)
+            self.rect.x = randint(0, win_widht - 150)
             lost = lost + 1
 
 
