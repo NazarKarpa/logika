@@ -4,6 +4,8 @@ from pygame.sprite import Sprite
 from pygame.transform import scale, flip
 from pygame.image import load
 from random import randint
+from time import time as timer
+
 
 
 lost = 0
@@ -37,8 +39,8 @@ class Player(GameSprite):
         if keys[K_a] and self.rect.x > 5:
             self.rect.x -= self.speed
     def fire(self):
-        pass
-
+        bullet = Bullet('bullet.png', self.rect.centerx, self.rect.top, 10, 15,20)
+        bullets.add(bullet)
 class Enemy(GameSprite):
     def update(self):
         self.rect.y += self.speed
@@ -48,6 +50,12 @@ class Enemy(GameSprite):
             self.rect.x = randint(0, win_widht - 150)
             lost = lost + 1
 
+class Bullet(GameSprite):
+    def update(self):
+        self.rect.y -= self.speed
+        if self.rect.y <= 0:
+                self.kill()
+
 
 
 win_widht = 700
@@ -56,6 +64,8 @@ window = display.set_mode((win_widht,win_height))
 background = scale(load('galaxy.jpg'), (win_widht, win_height))
 
 ship = Player('rocket.png', 5, (win_height) - 160, 3, 100, 150)
+
+bullets = sprite.Group()
 
 monsters = sprite.Group()
 
@@ -79,22 +89,56 @@ mixer.music.set_volume(0.03)
 
 font.init()
 font1 = font.SysFont('Aril', 36)
+font2 = font.SysFont('Aril', 36)
 
-
+ammo = 5
+reload = False
 
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
+
+        if e.type == KEYDOWN:
+            if e.key == K_ESCAPE:
+                game = False
+
+        if e.type == KEYDOWN:
+            if e.key == K_SPACE:
+                if ammo>0 and reload == False:
+                    ship.fire()
+                    ammo-=1
+                if ammo == 0 and reload == False:
+                    reload = True
+                    start_reload = timer()
+
+
+
     if not finish:
 
         window.blit(background, (0 ,0))
         txt_lose = font1.render(f'Пропушено: {lost}', True, (255, 255, 255))
+        txt_win = font2.render(f'Рахунок: {score}', True, (255, 255, 255))
         window.blit(txt_lose, (10, 50))
+        window.blit(txt_win, (10, 25))
         ship.reset()
 
-        monsters.draw(window)
 
+        if reload:
+            now_time = timer()
+
+            delta = now_time - start_reload
+            if delta < 3:
+                txt_reload = font1.render('Секунду, перезарядка', True,[150, 50, 0])
+                window.blit(txt_reload, (200, 400))
+            else:
+                ammo = 5
+                reload = False
+
+        monsters.draw(window)
+        bullets.draw(window)
+
+        bullets.update()
         monsters.update()
 
         ship.update()
