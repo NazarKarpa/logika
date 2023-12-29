@@ -90,6 +90,10 @@ mixer.music.set_volume(0.03)
 font.init()
 font1 = font.SysFont('Aril', 36)
 font2 = font.SysFont('Aril', 36)
+font3 = font.SysFont('Aril', 80)
+
+txt_lose_game = font3.render('YOU LOSE!', True, (255, 0, 0))
+txt_win_game = font3.render('YOU WIN!', True, (0, 255, 0))
 
 ammo = 5
 reload = False
@@ -128,7 +132,7 @@ while game:
             now_time = timer()
 
             delta = now_time - start_reload
-            if delta < 3:
+            if delta < 1:
                 txt_reload = font1.render('Секунду, перезарядка', True,[150, 50, 0])
                 window.blit(txt_reload, (200, 400))
             else:
@@ -142,6 +146,52 @@ while game:
         monsters.update()
 
         ship.update()
+        if sprite.spritecollide(ship, monsters, False):
+
+            window.blit(txt_lose_game, (230, 230))
+            finish = True
+
+        collide_bullets = sprite.groupcollide(monsters, bullets, True, True)
+        for c in collide_bullets:
+            score = score + 1
+            enemy = Enemy('ufo.png', randint(0, win_widht - 100), 0, randint(1, 3), 85, 80)
+            monsters.add(enemy)
+        if score == 11:
+
+            window.blit(txt_win_game, (230, 230))
+            finish = True
+
+        if lost == 5:
+
+            window.blit(txt_lose_game, (230, 230))
+            finish = True
+    else:
+        ammo = 5
+        score = 0
+        lost = 0
+        finish = False
+
+        for m in monsters:
+            m.kill()
+        for m in bullets:
+            m.kill()
+
+        time.delay(3000)
+        for i in range(2):
+            enemy = Enemy('asteroid.png', randint(0, win_widht - 50), 0, randint(1, 3), 60, 45)
+            monsters.add(enemy)
+        for i in range(4):
+            enemy = Enemy('ufo.png', randint(0, win_widht - 100), 0, randint(1, 3), 85, 80)
+            monsters.add(enemy)
+
+
+
+
+
+
+
+
+
     display.update()
     clock.tick(FPS)
 
