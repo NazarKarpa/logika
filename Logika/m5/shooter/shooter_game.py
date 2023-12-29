@@ -156,12 +156,12 @@ while game:
             score = score + 1
             enemy = Enemy('ufo.png', randint(0, win_widht - 100), 0, randint(1, 3), 85, 80)
             monsters.add(enemy)
-        if score == 11:
+        if score >= 11:
 
             window.blit(txt_win_game, (230, 230))
             finish = True
 
-        if lost == 5:
+        if lost >= 11:
 
             window.blit(txt_lose_game, (230, 230))
             finish = True
